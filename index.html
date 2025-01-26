@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charter House Venues</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .gallery {
+            padding: 50px;
+            display: flex;
+            gap: 30px;
+            background-color: #fff;
+        }
+
+        .galleryItem {
+            flex: 1;
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        #home .slide-content button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        #home .slide-content button:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .galleryItem:hover {
+            transform: translateY(-10px);
+        }
+
+        .galleryImg {
+            width: 100%;
+            height: 800px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+
+        .galleryTitle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgb(236, 255, 252);
+            font-size: 30px;
+            font-weight: 900;
+            text-align: center;
+            z-index: 1;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .feature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+
+        .featureIcon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 20px;
+        }
+
+        .featureTitle {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 20px;
+            color: #333;
+        }
+
+        .featureDesc {
+            color: #666;
+            width: 50%;
+            height: 100px;
+        }
+
+        :root {
+            --primary-color: #4a4a4a;
+            --secondary-color: #6a6a6a;
+            --accent-color: #3498db;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--primary-color);
+            overflow-x: hidden;
+        }
+
+        /* Improved Navigation */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 1.5rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(30px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 1rem 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Slider Fix */
+        .slider {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slider-container {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            width: 100%;
+        }
+        .slide-background {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .slide-content {
+            text-align: center;
+            color: white;
+            z-index: 10;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Venues Section */
+        .venues {
+            padding: 4rem 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .venue-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .venue-card:hover {
+            transform: scale(1.05);
+        }
+
+        .venue-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .venue-details {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        /* Events Section */
+        .events {
+            background-color: #f4f4f4;
+            padding: 4rem 5%;
+        }
+
+        .event-card {
+            background: white;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #282828;
+            color: white;
+            padding: 20px 0;
+        }
+
+        .footerLeft {
+            display: flex;
+            justify-content: space-between;
+            padding: 50px;
+        }
+
+        .footerMenu {
+            margin-right: 50px;
+        }
+
+        .fMenuTitle {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .fList {
+            padding: 0;
+            list-style: none;
+        }
+
+        .fListItem {
+            margin-bottom: 10px;
+            color: #ccc;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .fListItem:hover {
+            color: #369e62;
+        }
+
+        .fIcons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .fIcon {
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .fIcon:hover {
+            transform: scale(1.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .navbar {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 3%;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0,0,0,0.9);
+        padding: 1rem;
+    }
+
+    .nav-links a {
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+
+    .slider {
+        height: 50vh;
+    }
+
+    .slide {
+        height: 50vh;
+    }
+
+    .features {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .gallery {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .galleryItem {
+        padding: 20px;
+    }
+
+    .galleryImg {
+        height: 300px;
+    }
+
+    .footerLeft {
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .footerMenu {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Elite Venues</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="Venuepage.html">Venues</a>
+                <a href="Contact_us.html">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+ <!-- Slider with Fixed HTML Structure -->
+ <section id="home" class="slider">
+    <div class="slider-container">
+        <div class="slide">
+            <img src="./grand arena/IMG_2949 (1).jpg" alt="Elegant Ballroom" class="slide-background">
+            <div class="slide-content">
+                <h1>Elegant Ballroom</h1>
+                <p>Perfect for weddings and grand events</p>
+                <a href="Venuepage.html" class="button">Take a Look</a>
+        </div>
+        </div>
+        <div class="slide">
+            <img src="./Palms/4Y9A8401.jpg" alt="Modern Conference Hall" class="slide-background">
+            <div class="slide-content">
+                <h1>Modern Conference Hall</h1>
+                <p>Ideal for corporate and professional gatherings</p>
+                <a href="Venuepage.html" class="button">Take a Look</a>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="./Palms/4Y9A1237.jpg" alt="Modern Conference Hall" class="slide-background">
+            <div class="slide-content">
+                <h1>Modern Conference Hall</h1>
+                <p>Ideal for corporate and professional gatherings</p>
+                <a href="Venuepage.html" class="button">Take a Look</a>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="./Grand Arena/P1566426.jpg" alt="Modern Conference Hall" class="slide-background">
+            <div class="slide-content">
+                <h1>Modern Conference Hall</h1>
+                <p>Ideal for corporate and professional gatherings</p>
+                <a href="Venuepage.html" class="button">Take a Look</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="features">
+    <a href="Venuepage.html" class="feature" style="text-decoration: none; color: inherit;">
+        <img src="./images/event.png" alt="" class="featureIcon">
+        <span class="featureTitle">View our Catalogue</span>
+        <span class="featureDesc">If you need it we have it.</span>
+    </a>
+    <a href="Contact_us.html" class="feature" style="text-decoration: none; color: inherit;">
+        <img src="./images/map.png" alt="" class="featureIcon">
+        <span class="featureTitle">About Us</span>
+        <span class="featureDesc">Let us tell you about us.</span>
+    </a>
+    <a href="Contact_us.html" class="feature" style="text-decoration: none; color: inherit;">
+        <img src="./images/phone.png" alt="" class="featureIcon">
+        <span class="featureTitle">CONTACT US</span>
+        <span class="featureDesc">Keep in touch via email and support system.</span>
+    </a>
+</div>
+
+<div class="gallery">
+    <div class="galleryItem">
+        <img src="./grand arena/B35I3674.jpg" alt="" class="galleryImg">
+        <h1 class="galleryTitle">Premium Quality</h1>
+    </div>
+    <div class="galleryItem">
+        <img src="./Palms/4Y9A82791.jpg" alt="" class="galleryImg">
+        <h1 class="galleryTitle">Professional Service</h1>
+    </div>
+</div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeBookingModal()">&times;</span>
+            <h2 id="modalVenueName">Venue Booking</h2>
+            <form id="bookingForm">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="date" placeholder="Preferred Date" required>
+                <textarea placeholder="Additional Details"></textarea>
+                <button type="submit">Send Inquiry</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footerLeft">
+            <div class="footerMenu">
+                <h1 class="fMenuTitle">About Us</h1>
+                <p>Email: justin@charterhouseghana.com/info@charterhouseghana.com</p>
+                <p>Phone: 024 431 0406</p>
+                <p>Address: B824/10,Feo Eyeo Street,Industrial Area,Accra – Ghana</p>
+                </ul>
+            </div>
+            <div class="footerMenu">
+                <h1 class="fMenuTitle">Useful Links</h1>
+                <ul class="fList">
+                    <li class="fListItem"><a href="index.html" style="text-decoration: none; color: inherit;">Home</a></li>
+                    <li class="fListItem"><a href="Venuepage.html" style="text-decoration: none; color: inherit;">Venues</a></li>
+                    <li class="fListItem"><a href="Contact_us.html" style="text-decoration: none; color: inherit;">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footerMenu">
+                <h1 class="fMenuTitle">Follow Us</h1>
+                <div class="fIcons">
+                    <a href="https://www.instagram.com/powe.rhiveshop/" target="_blank">
+                        <img src="./img/instagram.png" alt="Instagram" class="fIcon">
+                    </a>
+                    <a href="https://www.tiktok.com/@powerhive.inc" target="_blank">
+                        <img src="./img/tiktok.png" alt="TikTok" class="fIcon">
+                    </a>
+                    <a href="https://wa.me/0550730457" target="_blank">
+                        <img src="./img/whatsapp.png" alt="WhatsApp" class="fIcon">
+                    </a>
+                    
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Slider Functionality
+        const slider = document.querySelector('.slider-container');
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        function toggleMenu() {
+             const navLinks = document.querySelector('.nav-links');
+             navLinks.classList.toggle('active');
+        }
+
+        setInterval(nextSlide, 5000);
+
+        // Modal Functionality
+        function openBookingModal(venueName) {
+            document.getElementById('bookingModal').style.display = 'block';
+            document.getElementById('modalVenueName').textContent = `Book ${venueName}`;
+        }
+
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+    
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }       
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').style.display = 'none';
+        }
+
+       // Form Submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const venueName = document.getElementById('modalVenueName').textContent;
+            const emailLink = `mailto:info@elitevenues.com?subject=Booking Inquiry for ${venueName}&body=Name: ${e.target[0].value}%0AEmail: ${e.target[1].value}%0ADate: ${e.target[2].value}%0ADetails: ${e.target[3].value}`;
+            window.location.href = emailLink;
+        });
+
+        // Navigation menu close
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navLinks = document.querySelector('.nav-links');
+                const hamburger = document.querySelector('.hamburger');
+
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+             });
+        });
+    </script>
+</body>
+</html> 
