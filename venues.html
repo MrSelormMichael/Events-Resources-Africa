@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Venues | Events Resources Africa</title>
+     <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles - Nubuke Foundation Inspired */
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #333333;
+            --accent-color: #666666;
+            --text-color: #1a1a1a;
+            --light-gray: #f8f8f8;
+            --medium-gray: #e5e5e5;
+            --white: #ffffff;
+            --black: #000000;
+            --transition: all 0.3s ease;
+            --border-color: #e0e0e0;
+            --hover-color: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+            padding-top: 120px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 200;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 300;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            border: 1px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            font-weight: 300;
+            text-align: center;
+            transition: var(--transition);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px 0;
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 100px;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .main-nav a {
+            font-weight: 300;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 5px 0;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .main-nav a:hover::after,
+        .main-nav a.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 1px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        /* Page Hero */
+      .page-hero {
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.hero-slide.active {
+    opacity: 1;
+}
+
+.hero-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    z-index: 2;
+}
+
+.page-hero .container {
+    position: relative;
+    z-index: 3;
+}
+
+/* Slideshow Navigation Dots */
+.slideshow-dots {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 3;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: white;
+    width: 30px;
+    border-radius: 6px;
+}
+
+        .page-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 200;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        /* Venues Page */
+        .venues-page {
+            padding: 100px 0;
+        }
+
+        .venues-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .venue-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .venue-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .venue-gallery {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 250px);
+            gap: 10px;
+            padding: 10px;
+            background: var(--black);
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item.main {
+            grid-column: 1 / 3;
+            grid-row: 1 / 3;
+        }
+
+        /* Image overlay on hover */
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* View more overlay */
+        .view-more-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 300;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .gallery-item:hover .view-more-overlay {
+            opacity: 1;
+        }
+
+        .view-more-overlay i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+
+
+
+        .venue-main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .venue-card:hover .venue-main-image img {
+            transform: scale(1.05);
+        }
+
+        .thumbnail-mini:hover {
+            border-color: white;
+            transform: scale(1.1);
+        }
+
+        .thumbnail-mini img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .venue-content {
+            padding: 40px 30px;
+        }
+
+        .venue-header {
+            margin-bottom: 25px;
+        }
+
+        .venue-title {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .venue-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+        }
+
+        .meta-item i {
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+
+        .venue-description {
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .venue-features {
+            margin-bottom: 35px;
+        }
+
+        .venue-features h4 {
+            font-weight: 400;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+        }
+
+        .feature-item i {
+            margin-right: 10px;
+            color: var(--accent-color);
+            font-size: 0.8rem;
+        }
+
+        .venue-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-outline {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+            padding: 12px 25px;
+            font-size: 0.85rem;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .btn-white {
+            background-color: var(--white);
+            color: var(--primary-color);
+            border-color: var(--white);
+        }
+
+        .btn-white:hover {
+            background-color: transparent;
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        /* Image Modal */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            margin: auto;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+    padding: 20px;
+    user-select: none;
+    z-index: 1002;
+    transition: all 0.3s ease;
+}
+
+.modal-nav:hover {
+    color: var(--accent-color);
+}
+
+.modal-prev {
+    left: 20px;
+}
+
+.modal-next {
+    right: 20px;
+}
+
+.modal-counter {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+        /* Booking Dialog */
+.booking-dialog {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.booking-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    animation: fadeInUp 0.3s ease;
+}
+
+.close-dialog {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--accent-color);
+}
+
+.booking-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.booking-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.booking-option:hover {
+    background: var(--light-gray);
+}
+
+.booking-option i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.booking-option.call {
+    color: #34b7f1;
+    border-color: #34b7f1;
+}
+
+.booking-option.copy {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.booking-option.email {
+    color: #ea4335;
+    border-color: #ea4335;
+}
+
+.booking-option.whatsapp {
+    color: #25D366;
+    border-color: #25D366;
+}
+
+.copy-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    display: none;
+    z-index: 1001;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .venue-gallery {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 200px);
+    }
+    
+    .gallery-item.main {
+        grid-column: 1 / 3;
+        grid-row: 1 / 3;
+    }
+    
+    .about-section .container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    
+    .venue-meta {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-nav {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: var(--white);
+        transition: var(--transition);
+        border-top: 1px solid var(--border-color);
+    }
+
+    .venue-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 180px);
+        gap: 8px;
+        padding: 8px;
+    }
+    
+    .gallery-item.main {
+        grid-column: 1 / 3;
+        grid-row: 1 / 3;
+    }
+    
+    .main-nav.active {
+        left: 0;
+    }
+    
+    .main-nav ul {
+        flex-direction: column;
+        padding: 40px;
+        gap: 0;
+    }
+    
+    .main-nav li {
+        margin: 20px 0;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 20px;
+    }
+    
+    .main-nav li:last-child {
+        border-bottom: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+    }
+    
+    .mobile-menu-toggle span {
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: var(--primary-color);
+        transition: var(--transition);
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(7px, 7px);
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+    
+    .venues-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .thumbnail-grid {
+        justify-content: center;
+    }
+
+     .venue-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 200px);
+        gap: 8px;
+        padding: 8px;
+    }
+    
+    .gallery-item.main {
+        grid-column: 1;
+        grid-row: 1;
+    }
+    
+    /* Hide images beyond the 4th one */
+    .gallery-item:nth-child(n+5) {
+        display: none;
+    }
+    
+    /* Show the 4th image with "View More" overlay */
+    .gallery-item:nth-child(4) {
+        display: block;
+    }
+    
+    .gallery-item:nth-child(4) .view-more-overlay {
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.75);
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .btn {
+        padding: 12px 25px;
+        font-size: 0.8rem;
+    }
+    
+    section {
+        padding: 60px 0;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .testimonial p {
+        font-size: 1.1rem;
+    }
+
+     .venue-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 180px);
+    }
+    
+    .modal-nav {
+        font-size: 2rem;
+        padding: 10px;
+    }
+    
+    .modal-prev {
+        left: 10px;
+    }
+    
+    .modal-next {
+        right: 10px;
+    }
+    
+    .gallery-item.main {
+        grid-column: 1;
+        grid-row: 1 / 4;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/logo-era.png" alt="Events Resources Africa">
+            </a>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="venues.html">Venues</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+    
+<section class="page-hero">
+    <div class="hero-slideshow">
+        <div class="hero-slide active">
+            <img src="images/slide4.jpg" alt="Event Space 1">
+        </div>
+        <div class="hero-slide">
+            <img src="images/slide1.jpg" alt="Event Space 2">
+        </div>
+        <div class="hero-slide">
+            <img src="images/slide2.jpg" alt="Event Space 3">
+        </div>
+        <div class="hero-slide">
+            <img src="images/slide3.jpg" alt="Event Space 4">
+        </div>
+        <div class="hero-slide">
+            <img src="images/slide5.jpg" alt="Event Space 5">
+        </div>
+        <div class="hero-slide">
+            <img src="images/slide6.jpg" alt="Event Space 6">
+        </div>
+    </div>
+    
+    <div class="hero-overlay"></div>
+    
+    <div class="container">
+        <h1 class="page-title">Our Venues</h1>
+        <p class="page-subtitle">Discover Ghana's finest event spaces</p>
+    </div>
+    
+    <div class="slideshow-dots">
+        <span class="dot active" onclick="currentSlide(0)"></span>
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span>
+    </div>
+</section>
+
+    <!-- Venues Section -->
+<section class="venues-page">
+    <div class="container">
+        <div class="venues-grid">
+            
+            <!-- Grand Arena -->
+            <div class="venue-card" data-venue="grand-arena">
+                <div class="venue-gallery">
+                    <!-- Main large image -->
+                    <div class="gallery-item main" onclick="openImageModal(this)">
+                        <img src="images/grand arena/IMG_2949.jpg" alt="Grand Arena - Main Hall">
+                    </div>   
+                    <!-- Thumbnail images -->
+                    <div class="gallery-item" onclick="openImageModal(this)">
+                        <img src="images/grand arena/A12I0262.jpg" alt="Grand Arena - Interior">
+                    </div>
+                    <div class="gallery-item" onclick="openImageModal(this)">
+                        <img src="images/grand arena/B35I3964.jpg" alt="Grand Arena - Stage">
+                    </div>
+                    <div class="gallery-item" onclick="openImageModal(this)">
+                        <img src="images/grand arena/B35I3674.jpg" alt="Grand Arena - Seating">
+                    </div>
+                    <div class="gallery-item" onclick="openImageModal(this)">
+                        <img src="images/grand arena/B35I4108.jpg" alt="Grand Arena - View">
+                    </div>
+                    <div class="gallery-item" onclick="openImageModal(this)">
+                        <img src="images/grand arena/IMG_9704.jpg" alt="Grand Arena - Space">
+                    </div>
+                    <div class="gallery-item" onclick="openImageModal(this)">
+                        <img src="images/grand arena/IMG_9704.jpg" alt="Grand Arena - Space">
+                    </div>
+                    <div class="gallery-item" onclick="openImageModal(this)">
+                        <img src="images/grand arena/B35I3674.jpg" alt="Grand Arena - Venue">
+                        <div class="view-more-overlay">
+                            <i class="fas fa-images"></i>
+                            <span>View All</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="venue-content">
+                    <div class="venue-header">
+                        <h2 class="venue-title">Grand Arena</h2>
+                        <div class="venue-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-users"></i>
+                                <span>Capacity: 1000-3000</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Accra, Ghana</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-star"></i>
+                                <span>4.8/5 (124 reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="venue-description">
+                        The Grand Arena is a magnificent multi-purpose venue perfect for large-scale events, concerts, conferences, and sporting events. With its impressive architecture and state-of-the-art facilities, it stands as one of Africa's premier event destinations.
+                    </p>
+                    
+                    <div class="venue-features">
+                        <h4>Key Features</h4>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>High-Speed Internet</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>VIP Lounges</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Wheelchair Accessible</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Ample Parking</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>24/7 Security</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Event Planning Team</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="venue-actions">
+                        <a href="#contact" class="btn btn-primary">Book This Venue</a>
+                        <a href="#" class="btn btn-outline">Request Info</a>
+                    </div>
+                </div>
+            </div>
+                <!-- The Palms Convention Center -->
+                <div class="venue-card" data-venue="palms">
+                <div class="venue-gallery">
+                    <!-- Main large image -->
+                    <div class="gallery-item main" onclick="openImageModal(this)">
+                        <img src="images/Palms/4Y9A8279.jpg" alt="The Palms - Ballroom">
+                    </div>
+                    
+                    <!-- Thumbnail images -->
+                    <div class="gallery-item" onclick="openImageModal(this)">
+                        <img src="images/Palms/4Y9A8388 (1).jpg" alt="The Palms - Reception">
+                    </div>
+                    <div class="gallery-item" onclick="openImageModal(this)">
+                        <img src="images/Palms/4Y9A8401.jpg" alt="The Palms - Dining">
+                    </div>
+                    <div class="gallery-item" onclick="openImageModal(this)">
+                        <img src="images/Palms/4Y9A9018 2.jpg" alt="The Palms - Garden">
+                    </div>
+                    <div class="gallery-item" onclick="openImageModal(this)">
+                        <img src="images/Palms/4Y9A8279.jpg" alt="The Palms - Interior">
+                    </div>
+                    <div class="gallery-item" onclick="openImageModal(this)">
+                        <img src="images/Palms/4Y9A8388 (1).jpg" alt="The Palms - Setup">
+                    </div>
+                    <div class="gallery-item" onclick="openImageModal(this)">
+                        <img src="images/Palms/4Y9A8401.jpg" alt="The Palms - Event">
+                        <div class="view-more-overlay">
+                            <i class="fas fa-images"></i>
+                            <span>View All</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="venue-content">
+                    <div class="venue-header">
+                        <h2 class="venue-title">The Palms Convention Center</h2>
+                        <div class="venue-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-users"></i>
+                                <span>Capacity: 500-2000</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Accra, Ghana</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-star"></i>
+                                <span>4.9/5 (87 reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="venue-description">
+                        The Palms is an elegant convention center perfect for weddings, galas, and corporate events. With its grand ballroom featuring stunning chandeliers and versatile spaces, it can accommodate events of all sizes with sophistication and style.
+                    </p>
+                    
+                    <div class="venue-features">
+                        <h4>Key Features</h4>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Grand Ballroom</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>High-Speed Internet</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Event Planning Team</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Catering Services</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Outdoor Garden</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Ample Parking</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="venue-actions">
+                        <a href="#contact" class="btn btn-primary">Book This Venue</a>
+                        <a href="#" class="btn btn-outline">Request Info</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Can't find what you're looking for?</h2>
+            <p>We have access to many more venues across Africa. Contact us with your specific requirements.</p>
+            <a href="contact.html" class="btn btn-white">Contact Our Team</a>
+        </div>
+    </section>
+
+    <!-- Image Modal - REPLACE the existing modal section -->
+    <div class="image-modal" id="imageModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeImageModal()">&times;</span>
+            <span class="modal-nav modal-prev" onclick="navigateImage(-1)">&#10094;</span>
+            <span class="modal-nav modal-next" onclick="navigateImage(1)">&#10095;</span>
+            <img class="modal-image" id="modalImage" src="" alt="">
+            <div class="modal-counter" id="modalCounter"></div>
+        </div>
+    </div>
+
+    
+
+<script src="js/main.js"></script>
+<script src="js/animations.js"></script>
+</script>
+</body>
+</html>

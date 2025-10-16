@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Events Resources Africa</title>
+    <link rel="stylesheet" href="css/main.css">
+     <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles - Consistent with main site */
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #333333;
+            --accent-color: #666666;
+            --text-color: #1a1a1a;
+            --light-gray: #f8f8f8;
+            --medium-gray: #e5e5e5;
+            --white: #ffffff;
+            --black: #000000;
+            --transition: all 0.3s ease;
+            --border-color: #e0e0e0;
+            --hover-color: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+            padding-top: 120px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 200;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 300;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            border: 1px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            font-weight: 300;
+            text-align: center;
+            transition: var(--transition);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
+        }
+
+        .btn-white {
+            background-color: var(--white);
+            color: var(--primary-color);
+            border-color: var(--white);
+        }
+
+        .btn-white:hover {
+            background-color: transparent;
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px 0;
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 100px;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .main-nav a {
+            font-weight: 300;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 5px 0;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .main-nav a:hover::after,
+        .main-nav a.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 1px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        /* Page Hero */
+        .page-hero {
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8), rgba(102, 102, 102, 0.6)), 
+                        url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1600&h=900&fit=crop') center/cover;
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1));
+            z-index: 1;
+        }
+
+        .page-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-title {
+            font-size: 3.5rem;
+            font-weight: 200;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 120px 0;
+            background: var(--white);
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .story-content {
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideInLeft 1s ease forwards;
+        }
+
+        .story-content.reverse {
+            transform: translateX(30px);
+            animation: slideInRight 1s ease forwards;
+        }
+
+        .story-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            opacity: 0;
+            transform: scale(0.9);
+            animation: scaleIn 1s ease forwards;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .story-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            font-weight: 200;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .stat-item {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .stat-item:nth-child(1) { animation-delay: 0.1s; }
+        .stat-item:nth-child(2) { animation-delay: 0.2s; }
+        .stat-item:nth-child(3) { animation-delay: 0.3s; }
+        .stat-item:nth-child(4) { animation-delay: 0.4s; }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 200;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            color: var(--white);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 120px 0;
+            background: var(--light-gray);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            margin-top: 80px;
+        }
+
+        .value-card {
+            background: var(--white);
+            padding: 50px 40px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .value-card:nth-child(1) { animation-delay: 0.1s; }
+        .value-card:nth-child(2) { animation-delay: 0.3s; }
+        .value-card:nth-child(3) { animation-delay: 0.5s; }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .value-card:hover::before {
+            left: 100%;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            transition: var(--transition);
+        }
+
+        .value-card:hover .value-icon {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .value-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 120px 0;
+            background: var(--white);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-top: 80px;
+        }
+
+        .team-member {
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.9);
+            animation: scaleIn 1s ease forwards;
+        }
+
+        .team-member:nth-child(1) { animation-delay: 0.1s; }
+        .team-member:nth-child(2) { animation-delay: 0.3s; }
+        .team-member:nth-child(3) { animation-delay: 0.5s; }
+
+        .member-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            overflow: hidden;
+            border: 4px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .member-photo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            background: linear-gradient(45deg, transparent, rgba(26, 26, 26, 0.1));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .member-photo:hover::before {
+            opacity: 1;
+        }
+
+        .member-photo:hover {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .member-photo:hover img {
+            transform: scale(1.1);
+        }
+
+        .member-name {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .member-role {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        /* Location Section */
+        .location-section {
+            padding: 120px 0;
+            background: var(--light-gray);
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 60px;
+            margin-top: 80px;
+        }
+
+        .location-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .location-card:nth-child(1) { animation-delay: 0.2s; }
+        .location-card:nth-child(2) { animation-delay: 0.4s; }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .location-header {
+            padding: 40px 40px 20px;
+            text-align: center;
+        }
+
+        .location-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .location-address {
+            color: var(--accent-color);
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .location-map {
+            height: 300px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .location-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .cta-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Mobile Gallery Button */
+        .mobile-gallery-btn {
+            display: none;
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: var(--transition);
+        }
+
+        .mobile-gallery-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        /* Image Modal */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            margin: auto;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-nav:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
+        }
+
+        .modal-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .modal-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-indicator.active {
+            background: white;
+        }
+
+        /* Responsive Design */
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .about-section .container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    
+    .venue-meta {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-nav {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: var(--white);
+        transition: var(--transition);
+        border-top: 1px solid var(--border-color);
+    }
+    
+    .main-nav.active {
+        left: 0;
+    }
+    
+    .main-nav ul {
+        flex-direction: column;
+        padding: 40px;
+        gap: 0;
+    }
+    
+    .main-nav li {
+        margin: 20px 0;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 20px;
+    }
+    
+    .main-nav li:last-child {
+        border-bottom: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+    }
+    
+    .mobile-menu-toggle span {
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: var(--primary-color);
+        transition: var(--transition);
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(7px, 7px);
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+    
+    .venues-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .thumbnail-grid {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .btn {
+        padding: 12px 25px;
+        font-size: 0.8rem;
+    }
+    
+    section {
+        padding: 60px 0;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .testimonial p {
+        font-size: 1.1rem;
+    }
+}
+        /* Scroll animations trigger */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/logo-era.png" alt="Events Resources Africa">
+            </a>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="venues.html">Venues</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">About Us</h1>
+            <p class="page-subtitle">Connecting Africa through exceptional events</p>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-content animate-on-scroll">
+                    <h2 class="section-title">Our Story</h2>
+                    <p>Events Resources Africa was founded with a vision to transform the event landscape across the continent. We recognized the need for a comprehensive platform that connects event organizers with premium venues while maintaining the highest standards of excellence.</p>
+                    <p>Over the past fifteen years, we have grown from a small local operation to becoming one of Africa's most trusted event resource companies, serving clients from corporations to cultural institutions.</p>
+                </div>
+                <div class="story-image animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=600&h=400&fit=crop" alt="Our Journey">
+                </div>
+            </div>
+
+            <div class="story-grid">
+                <div class="story-image animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600&h=400&fit=crop" alt="Our Mission">
+                </div>
+                <div class="story-content reverse animate-on-scroll">
+                    <h2 class="section-title">Our Mission</h2>
+                    <p>We are committed to providing exceptional venue solutions that elevate every event experience. Our mission extends beyond simply offering spaces – we create environments where meaningful connections are forged and lasting memories are made.</p>
+                    <p>Through our carefully curated portfolio of venues, we support the growth of Africa's vibrant event industry while preserving the rich cultural heritage that makes each gathering unique.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Our Impact</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Events Hosted</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Partner Venues</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10k+</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Our Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="value-title">Excellence</h3>
+                    <p>We maintain the highest standards in every aspect of our service, from venue selection to client support, ensuring exceptional experiences every time.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="value-title">Partnership</h3>
+                    <p>We build lasting relationships with our clients and venue partners, working collaboratively to achieve shared success and mutual growth.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="value-title">Innovation</h3>
+                    <p>We continuously evolve our services and embrace new technologies to stay ahead of industry trends and exceed client expectations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop" alt="Kwame Asante">
+                    </div>
+                    <h3 class="member-name">Kwame Asante</h3>
+                    <p class="member-role">Founder & CEO</p>
+                    <p>With over 20 years in the hospitality industry, Kwame leads our vision of connecting Africa through exceptional events.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop" alt="Ama Osei">
+                    </div>
+                    <h3 class="member-name">Ama Osei</h3>
+                    <p class="member-role">Head of Operations</p>
+                    <p>Ama ensures seamless operations across all our venues, bringing precision and care to every client interaction.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop" alt="Kofi Mensah">
+                    </div>
+                    <h3 class="member-name">Kofi Mensah</h3>
+                    <p class="member-role">Business Development</p>
+                    <p>Kofi drives our expansion across Africa, building partnerships and identifying new opportunities for growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location-section">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Our Venue Locations</h2>
+            <p class="section-subtitle" style="text-align: center; color: var(--accent-color);">Discover where our exceptional venues are located across Accra</p>
+            
+            <div class="location-grid">
+                <!-- Grand Arena Location -->
+                <div class="location-card">
+                    <div class="location-header">
+                        <h3 class="location-title">Grand Arena</h3>
+                        <p class="location-address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Independence Avenue, Accra, Ghana
+                        </p>
+                        <p style="color: var(--accent-color); margin-bottom: 0;">Our flagship venue for large-scale events and conferences</p>
+                    </div>
+                    <div class="location-map">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3971.080689117288!2d-0.19392840000000003!3d5.5550571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf918baea0f63b%3A0x471cac624a3e14ca!2sGrand%20Arena!5e0!3m2!1sen!2sgh!4v1737824097101!5m2!1sen!2sgh" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+                <!-- The Palms Location -->
+                <div class="location-card">
+                    <div class="location-header">
+                        <h3 class="location-title">The Palms</h3>
+                        <p class="location-address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            East Legon, Accra, Ghana
+                        </p>
+                        <p style="color: var(--accent-color); margin-bottom: 0;">Elegant venue perfect for weddings and sophisticated gatherings</p>
+                    </div>
+                    <div class="location-map">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.7234567890123!2d-0.1234567!3d5.6234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNcKwMzAnMjEuMiJOIDDCsDA3JzI0LjQiVw!5e0!3m2!1sen!2sgh!4v1625097652400!5m2!1sen!2sgh" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="images/logo-era.png" alt="Events Resources Africa" class="footer-logo">
+                    <p>Connecting you with Africa's premier event venues and resources.</p>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="venues.html">Venues</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Venues</h3>
+                    <ul>
+                        <li><a href="venues.html#palms">The Palms</a></li>
+                        <li><a href="venues.html#grand-arena">Grand Arena</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> B824/10 Feo Oyeo Link, Accra</li>
+                        <li><i class="fas fa-phone"></i> 024 431 0406</li>
+                        <li><i class="fas fa-envelope"></i> info@eventsafrica.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Events Resources Africa. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+     <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+
+</body>
+</html>
